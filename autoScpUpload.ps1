@@ -1,9 +1,9 @@
 ﻿$fileName = 'notes'
 $path = 'C:\Users\rhexa\Desktop'
 $filePath = "$path\$fileName.txt"
-$ssh = "alpine@192.168.85.14:~/Projects"
+$ssh = "alpine@192.168.85.14:~/Projects/"
 
-$command = "scp $filePath $ssh"
+$command = "scp -i ~\.ssh\id_ed25519 $filePath $ssh"
 
 #Create tmp dir
 if (ls "$path\tmp"){
@@ -40,7 +40,7 @@ if ("$(cat $hashFile)" -eq "$(cat $hashTmp)")
 }
 else
 {
-    $command
     (Get-FileHash $filePath -Algorithm MD5).Hash > $hashFile
     echo "MD5 updated"
+    start powershell $command
 } 
