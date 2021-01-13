@@ -3,7 +3,11 @@ $path = 'C:\Users\rhexa\Desktop'
 $filePath = "$path\$fileName.txt"
 $ssh = "alpine@192.168.85.14:~/Projects/"
 
-$command = "scp -i ~\.ssh\id_ed25519 $filePath $ssh"
+#use this one for scp using password
+#$command = "scp $filePath $ssh; Start-Sleep -Seconds 5"
+
+#use this one for scp using keys
+$command = "scp -i ~\.ssh\id_ed25519 $filePath $ssh; Start-Sleep -Seconds 5"
 
 #Create tmp dir
 if (ls "$path\tmp"){
